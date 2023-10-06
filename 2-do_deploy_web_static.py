@@ -2,16 +2,19 @@
 """This module defines the do_deploy function"""
 
 
+from fabric.operations import put, run
+from fabric.api import env
+import os
+
+env.hosts = ['100.26.170.70', '100.26.255.3']
+
+
 def do_deploy(archive_path):
     """
     Deploys the web_static .tgz file to a server
     """
-    from fabric.operations import put, run
-    from fabric.api import env
-    import os
-    env.hosts = ['100.26.170.70', '100.26.255.3']
-    env.user = 'ubuntu'
     if not os.path.exists(archive_path):
+        print(archive_path)
         return False
     try:
         tgz_name = os.path.split(archive_path)[-1]
