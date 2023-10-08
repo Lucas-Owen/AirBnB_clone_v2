@@ -46,7 +46,7 @@ def do_deploy(archive_path):
         return False
     try:
         tgz_name = os.path.split(archive_path)[-1]
-        without_ext = tgz_name.split('.')[-1]
+        without_ext = tgz_name.split('.')[-2]
         extract_dir = '/data/web_static/releases/'
         extract_path = '{}{}'.format(extract_dir, without_ext)
         upload_path = '/tmp/{}'.format(tgz_name)
