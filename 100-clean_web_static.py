@@ -25,5 +25,7 @@ def do_clean(number=0):
         archives = archives[number:]
         if archives:
             run('rm -rf {}'.format(' '.join(archives)))
+        return True
     except Exception as e:
-        print('An exception occured')
+        pass
+    return None
