@@ -20,11 +20,13 @@ def do_deploy(archive_path):
     try:
         tgz_name = os.path.split(archive_path)[-1]
         without_ext = tgz_name.split('.')[-1]
-        extract_path = '/data/web_static/releases/{}'.format(without_ext)
+        extract_dir = '/data/web_static/releases/'
+        extract_path = '{}{}'.format(extract_dir, without_ext)
         upload_path = '/tmp/{}'.format(tgz_name)
         put(archive_path, "/tmp/")
-        run('mkdir -p {}'.format(extract_path))
-        run('tar -xzf {} -C {}'.format(upload_path, extract_path))
+        run('mkdir -p {}'.format(extract_dir))
+        run('tar -xzf {} -C {}'.format(upload_path, extract_dir))
+        run('mv {}/web_static {}'.format(extract_dir, extract_path))
         run('rm -rf {}'.format(upload_path))
         run('rm -rf /data/web_static/current')
         run('ln -s {} /data/web_static/current'.format(extract_path))
