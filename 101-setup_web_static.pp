@@ -27,8 +27,8 @@ exec {'link':
 }
 
 exec { 'owner':
-	command => '/usr/bin/chown -hR ubuntu:ubuntu /data/',
-	refreshonly => true
+  command     => '/usr/bin/chown -hR ubuntu:ubuntu /data/',
+  refreshonly => true
 }
 
 file { '/data/web_static/releases/test/index.html':
