@@ -31,19 +31,22 @@ class BaseModel:
             if not hasattr(kwargs, 'created_at'):
                 self.created_at = datetime.now()
             else:
-                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                        '%Y-%m-%dT%H:%M:%S.%f')
+                kwargs['created_at'] = datetime.strptime(
+                    kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
             if not hasattr(kwargs, 'updated_at'):
                 self.updated_at = datetime.now()
             else:
-                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                        '%Y-%m-%dT%H:%M:%S.%f')
+                kwargs['updated_at'] = datetime.strptime(
+                    kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
             self.__dict__.update(kwargs)
 
     def __str__(self):
         """Returns a string representation of the instance"""
-        cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+        cls = self.__class__.__name__
+        items = dict(self.__dict__)
+        if items.get('_sa_instance_state', None):
+            del items['_sa_instance_state']
+        return '[{}] ({}) {}'.format(cls, self.id, items)
 
     def delete(self):
         """Deletes this BaseModel instance from the storage"""
