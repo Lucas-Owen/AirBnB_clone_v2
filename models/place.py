@@ -35,8 +35,8 @@ between Place and Amenity records.
 class Place(BaseModel, Base):
     """ A place to stay """
     amenity_ids = []
+    __tablename__ = 'places'
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-        __tablename__ = 'places'
         city_id = Column(
             String(60),
             ForeignKey('cities.id'),
@@ -106,7 +106,7 @@ class Place(BaseModel, Base):
         latitude = 0.0
         longitude = 0.0
         reviews = None
-        
+
         @property
         def amenities(self):
             """Returns the amenities of this Place"""
