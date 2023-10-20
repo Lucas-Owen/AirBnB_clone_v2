@@ -27,5 +27,18 @@ def variable_route(text):
     return f"C {escape(text.replace('_', ' '))}"
 
 
+@app.route("/python")
+@app.route("/python/<text>")
+def default_variable_route(text="is cool"):
+    """This function returns some text"""
+    return f"Python {escape(text.replace('_', ' '))}"
+
+
+@app.route("/number/<int:n>")
+def number(n):
+    """This function returns some text"""
+    return f"{n} is a number"
+
+
 if __name__ == "__main__":
     app.run()

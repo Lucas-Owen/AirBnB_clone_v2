@@ -23,14 +23,14 @@ def HBNB():
 
 @app.route("/c/<text>")
 def variable_route(text):
-    """This function returns 'HBNB'"""
+    """This function returns some text"""
     return f"C {escape(text.replace('_', ' '))}"
 
 
 @app.route("/python")
 @app.route("/python/<text>")
 def default_variable_route(text="is cool"):
-    """This function returns 'HBNB'"""
+    """This function returns some text"""
     return f"Python {escape(text.replace('_', ' '))}"
 
 
