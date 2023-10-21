@@ -1,4 +1,5 @@
 -- This script prepares a DEVELOPMENT MySQL server for this  project
+DROP DATABASE IF EXISTS `hbnb_dev_db`;
 CREATE DATABASE IF NOT EXISTS `hbnb_dev_db`;
 
 CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
