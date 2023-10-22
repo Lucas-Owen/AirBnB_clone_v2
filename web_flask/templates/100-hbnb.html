@@ -7,6 +7,7 @@
         <LINK rel="stylesheet" href="static/styles/3-header.css">
         <LINK rel="stylesheet" href="static/styles/3-footer.css">
         <LINK rel="stylesheet" href="static/styles/6-filters.css">
+        <LINK rel="stylesheet" href="static/styles/8-places.css">
     </HEAD>
     <BODY>
         <HEADER></HEADER>
@@ -30,7 +31,7 @@
                 </DIV>
                 <DIV class="amenities">
                     <H3>Amenities</H3>
-                    <H4></H4>
+                    <H4>&nbsp;</H4>
                     <UL class="popover">
                         {%- for amenity in amenities|sort(attribute="name") %}
                         <LI>{{ amenity.name }}</LI>
@@ -38,6 +39,32 @@
                     </UL>
                 </DIV>
                 <BUTTON>Search</BUTTON>
+            </SECTION>
+            <SECTION class="places">
+                <H1>Places</H1>
+                <UL>
+                    {%- for place in places|sort(attribute="name") %}
+                    <LI>
+                        <ARTICLE>
+                            <H2>{{ place.name }}</H2>
+                            <DIV class="price_by_night">${{ place.price_by_night }}</DIV>
+                            <DIV class="information">
+                                <DIV class="max_guest">{{ place.max_guest }} Guests</DIV>
+                                <DIV class="number_rooms">{{ place.number_rooms }} Bedroom</DIV>
+                                <DIV class="number_bath_rooms">{{ place.number_bathrooms }} Bathroom</DIV>
+                            </DIV>
+                            <DIV class="user">
+                                {%- for owner in users %}
+                                {%- if owner.id == place.user_id %}
+                                <B>Owner: </B> {{ owner.name }}
+                                {%- endif %}
+                                {%- endfor %}
+                            </DIV>
+                            <DIV class="description">{{ place.description|safe }}</DIV>
+                        </ARTICLE>
+                    </LI>
+                    {%- endfor %}
+                </UL>
             </SECTION>
         </DIV>
         <FOOTER>Best School</FOOTER>
